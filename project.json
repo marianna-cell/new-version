@@ -1,0 +1,8 @@
+{
+  "formatVersion": 1,
+  "name": "My First Site",
+  "runtime": "static",
+  "encoding": {
+    "/manifest.webmanifest": "text"
+  }
+}

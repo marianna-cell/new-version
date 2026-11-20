@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Knowledge Wars — захвати знания</title>
+  <meta name="description" content="Геймифицированный трекер учёбы: проходи карточки, отвечай верно и забирай клетки на карте знаний.">
+  <meta name="theme-color" content="#05070f">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/landing.css">
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- Шапка -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="/landing.html">
+        <i class="dot" aria-hidden="true"></i>
+        Knowledge&nbsp;<span class="accent">Wars</span>
+      </a>
+      <a class="btn btn-ghost" href="/index.html">Войти</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Герой -->
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow"><i></i> MVP · Математика ЕГЭ · 25 тем</p>
+        <h1 class="hero-title">Захвати <span class="accent">знания</span></h1>
+        <p class="hero-sub">
+          Проходи карточки, отвечай верно и забирай клетки на карте.
+          80% правильных — клетка твоя.
+        </p>
+        <div class="subject-picker" role="group" aria-label="Выберите предмет">
+          <p class="picker-label">Выбери предмет</p>
+          <div class="picker-buttons">
+            <button class="subject-btn is-active" type="button" data-subject="math">Математика</button>
+            <button class="subject-btn" type="button" data-subject="russian">Русский</button>
+            <button class="subject-btn" type="button" data-subject="physics">Физика</button>
+            <button class="subject-btn" type="button" data-subject="english">Английский</button>
+            <button class="subject-btn" type="button" data-subject="ege_math">ЕГЭ Математика</button>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" id="start-btn" href="/index.html">Начать играть →</a>
+          <p class="hero-note" id="start-note">Математика · 25 тем · 10 вопросов в каждой</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Как играть -->
+    <section class="section" aria-labelledby="how-title">
+      <div class="container">
+        <h2 id="how-title" class="section-title">Как это работает</h2>
+        <div class="grid-3">
+          <article class="card step">
+            <span class="step-num">1</span>
+            <h3>Выбери предмет</h3>
+            <p>Математика, русский, физика, английский или ЕГЭ — у каждого своя карта 5×5.</p>
+          </article>
+          <article class="card step">
+            <span class="step-num">2</span>
+            <h3>Пройди 10 вопросов</h3>
+            <p>10 карточек с вариантами ответов. Нужно 8 правильных — это 80%.</p>
+          </article>
+          <article class="card step">
+            <span class="step-num">3</span>
+            <h3>Захвати клетку</h3>
+            <p>Клетка становится твоей. Захвати всю карту 5×5.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="section" aria-labelledby="why-title">
+      <div class="container">
+        <h2 id="why-title" class="section-title">Почему это работает</h2>
+        <div class="grid-3">
+          <article class="card feature">
+            <span class="feature-icon" aria-hidden="true">⚡</span>
+            <h3>Азарт</h3>
+            <p>Соревнуйся с друзьями и захватывай клетки быстрее.</p>
+          </article>
+          <article class="card feature">
+            <span class="feature-icon" aria-hidden="true">🧠</span>
+            <h3>Обучение</h3>
+            <p>Не просто тест: объяснения ошибок и теория перед каждым квизом.</p>
+          </article>
+          <article class="card feature">
+            <span class="feature-icon" aria-hidden="true">🏆</span>
+            <h3>Соревнование</h3>
+            <p>Лидерборд, streak и рейтинг. Стань лучшим в школе.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Финальный призыв -->
+    <section class="section cta-section">
+      <div class="container">
+        <div class="cta">
+          <h2>Готов захватить знания?</h2>
+          <p class="cta-sub">5 предметов, 125 тем, 1250 вопросов и карты, которые нужно забрать.</p>
+          <a class="btn btn-primary btn-lg" href="/index.html">Играть сейчас</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Knowledge Wars · MVP · 2025</p>
+    </div>
+  </footer>
+
+  <script>
+    // Выбор предмета на лендинге: сохраняем в localStorage и ведём в игру.
+    (function () {
+      var LABELS = {
+        math: 'Математика',
+        russian: 'Русский',
+        physics: 'Физика',
+        english: 'Английский',
+        ege_math: 'ЕГЭ Математика'
+      };
+      var buttons = document.querySelectorAll('.subject-btn');
+      var note = document.getElementById('start-note');
+      var startBtn = document.getElementById('start-btn');
+
+      function select(subject) {
+        try { localStorage.setItem('kw:subject', subject); } catch (e) {}
+        buttons.forEach(function (b) {
+          b.classList.toggle('is-active', b.dataset.subject === subject);
+          b.setAttribute('aria-pressed', String(b.dataset.subject === subject));
+        });
+        if (note) note.textContent = LABELS[subject] + ' · 25 тем · 10 вопросов в каждой';
+        if (startBtn) startBtn.href = '/index.html';
+      }
+
+      buttons.forEach(function (b) {
+        b.addEventListener('click', function () { select(b.dataset.subject); });
+      });
+
+      var saved = null;
+      try { saved = localStorage.getItem('kw:subject'); } catch (e) {}
+      select(LABELS[saved] ? saved : 'math');
+    })();
+  </script>
+</body>
+</html>
